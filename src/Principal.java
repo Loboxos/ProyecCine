@@ -97,7 +97,7 @@ public static void main(String[] args) throws SQLException {
 		    	  int opUser = op.nextInt();
 		    	  switch (opUser) { 
 		    	    case 1:
-		    	    Reserv reserva= new Reserv(2);
+		    	    Reserv reserva= new Reserv(2,4,3,"2022-07-16",500,6,4,"13:47:00");
 		    	     ConsultaReser NuevaReser = new ConsultaReser();
 		    	     NuevaReser.insertar(reserva);
 		    	     break;
