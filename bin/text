@@ -1,0 +1,27 @@
+sacado de principal 
+
+Datos usuario:[idusuario,login,clave,apellido,dni,tipoUsuario]
+	int idUsuario = ArrayRegistro[0];
+	int tipoUser=ArrayRegistro[5];
+	String apellido = arrayRegistro[3];
+	
+	"bienvenido "+ apellido ---> SystemOutPrint
+	1:admin 2:socio 3:invitado 4:dadodebaja
+	
+	mostrarLinkDescara(tipoUser){
+	 if(tipoUser == 1 && tipoUser ==2{
+	 select * from libro where idLibro = idlibroParam;
+	 SystemOutPrint(linkdesc)
+	 mostramosLInkDesc ;
+	 }
+	 clickLibroDescarga(idUsuario,idLibro  ){
+	 consulta SELECT * HistorialDescarga --> registros,idusuario ,idLibro, fecha
+	 puedetraer un registro
+	 --->preguntamos canDescarga < 2
+	    --->puede descargar
+	        --->update HistorialDescarga -->cantidDescarga =+ 1
+	 no existe el registro
+	 inseert into HistorialDescarga idUsuario,id libro ,fechahoy ,cantdescargahoy=2,camtMes= 1;
+	 }
+	*/
+	
