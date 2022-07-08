@@ -51,7 +51,7 @@ public static void main(String[] args) throws SQLException {
 		      Scanner entrada2 = new Scanner(System.in);  //es necesario 2 scanner?
 		      String contra=entrada2.nextLine();
 		      ConsultasUser IngresarAdmin = new ConsultasUser();
-			    if(  IngresarAdmin.ingresar(mail, contra, 1) != null) {
+			    if( IngresarAdmin.ingresar(mail, contra, 1) != null) {
 		    	  System.out.println("que desea hacer? \n");
 		    		 System.out.println("1_Ver reservas de todos los clientes \t2_ver reserva especifica \t3_Crear nueva sala \t4_Modificar una sala \t5_eliminar una sala \t6_modificar descuentos \n");
 		    	  int opAdmin = op.nextInt();
@@ -60,17 +60,25 @@ public static void main(String[] args) throws SQLException {
 		    	     
 		    	     break;
 		    	    case 2:
-		    	    
+		    	 
 		    	     break;
 		    	 
 		    	    case 3 :
-		    	     
+		    	    	   //crear sala
+		    	    	ConsultaSala Sala=new ConsultaSala();
+		    	    	Sala.CrearSala();
 		    	     break;
 		    	     
 		    	    case 4:
-		    	    	
+		    	    	ConsultaSala Sala2 = new ConsultaSala();
+		    	    	Sala2.mostrar();
+		    	    	Sala2.ModifSala();
+		    	    	Sala2.mostrar();
 		    	    break;
 		    	    case 5:
+		    	    	ConsultaSala Sala3 = new ConsultaSala();
+		    	    	Sala3.EliminSala();
+		    	    	Sala3.mostrar();
 		    	    	break;
 		    	    case 6:
 		    	    	break;
@@ -79,7 +87,7 @@ public static void main(String[] args) throws SQLException {
 		    	    
 		    	  }
 		      }else{
-		    	  System.out.println("estas aqui");
+		    	  System.out.println("admin no encontrado");
 		      }
 		      
 		 }else if(opcion2 == 2){
@@ -91,13 +99,21 @@ public static void main(String[] args) throws SQLException {
 		      Scanner entrada2 = new Scanner(System.in);  //es necesario 2 scanner?
 		      String contra=entrada2.nextLine();
 		      ConsultasUser IngresarUsRe = new ConsultasUser();
-		      IngresarUsRe.ingresar(mail, contra, 2);
+		     //IngresarUsRe.ingresar(mail, contra, 2);
+		      
+		     CreaUser cliente = new CreaUser();
+		     cliente =  IngresarUsRe.ingresar(mail, contra, 2);
+		    
+		     
 		    	  System.out.println("Que desea hacer? \n");
 		    		 System.out.println("1_Crear una reserva \t2_Modificar una reserva \t3_Observar mis reservas \t4_ver el historico de mis entradas.\n");
 		    	  int opUser = op.nextInt();
 		    	  switch (opUser) { 
 		    	    case 1:
-		    	    Reserv reserva= new Reserv(2,4,3,"2022-07-16",500,6,4,"13:47:00");
+		    	    	cliente.getId_usuario();
+			    	 System.out.println(cliente);
+			    	  
+			    	    Reserv reserva= new Reserv(3,4,5,"2022-07-16",500,cliente.getId_usuario(),2,"13:47:00");
 		    	     ConsultaReser NuevaReser = new ConsultaReser();
 		    	     NuevaReser.insertar(reserva);
 		    	     break;
@@ -125,8 +141,8 @@ public static void main(String[] args) throws SQLException {
 	 break;
 	 case 3:
 		 System.out.println("*******Cartelera******");
-		ConsultaFunc funcion = new ConsultaFunc();
-		funcion.mostrar(); 
+		ConsultaSala sala = new ConsultaSala();
+		sala.mostrar(); 
 		
 		 break;
 	 case 4:

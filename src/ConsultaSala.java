@@ -3,6 +3,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class ConsultaSala {
 	ConexionBD conn = new ConexionBD();
@@ -31,6 +32,68 @@ public class ConsultaSala {
 		}
 		return listaPelis;
 	}
+	public void CrearSala() {
+		try {
+			Scanner ingreso = new Scanner(System.in);
+			System.out.println("Ingrese Numero de sala");
+			int idsala=ingreso.nextInt();
+			System.out.println("Ingrese formato ");
+			String formato=ingreso.next();
+			System.out.println("Ingrese capacidades");	
+			int capacidades=ingreso.nextInt();
+			
+			String consulta = "insert into salas (id_salas,formato,capacidades)values(?,?,?)";
+			usarConexion = conn.conectar();
+			ps = usarConexion.prepareStatement(consulta);
+			
+			ps.setObject(1,idsala);
+			ps.setObject(2,formato);
+			ps.setObject(3,capacidades);
+			ps.executeUpdate();
+			System.out.println("Sala agregada correctamente");
+		} catch (Exception e) {
+			System.out.println("Sala NO agregada");
+		}
+	}
+	public void ModifSala(){
+		try { 
+			Scanner ingreso = new Scanner(System.in);
+			System.out.println("Ingrese Numero de sala a modificar");
+			int idsala=ingreso.nextInt();
+			System.out.println("Ingrese nuevo formato ");
+			String formato=ingreso.next();
+			System.out.println("Ingrese capacidades");	
+			int capacidades=ingreso.nextInt();
+			usarConexion = conn.conectar();
+			stm = usarConexion.createStatement();
+		String consulta = "UPDATE salas set formato= '"+ formato +"' , capacidades = '" + capacidades +"'WHERE id_salas = '"+ idsala +"'";
+	//System.out.println(consulta);
+		stm.executeUpdate(consulta);
+		
+		System.out.println("Sala agregada correctamente");
+		
+		} catch (Exception e) {
+			System.out.println("Sala NO actualizada");
+		}
+		
+	}
+	public void EliminSala() {
+		Scanner ingr = new Scanner(System.in);
+		System.out.println("Ingrese Numero de sala a eliminar");
+		int idsala=ingr.nextInt();
+		try {
+		usarConexion = conn.conectar();
+		stm=usarConexion.createStatement();
+		String consulta = "DELETE FROM salas WHERE id_salas = '"+idsala+"'";
+		stm.executeUpdate(consulta);
+		System.out.println(consulta);
+		System.out.println("sala eliminada Correctamente");
+		} catch (Exception e) {
+			System.out.println("sala NO eliminada");
+			System.out.println(e.toString());
+		}
+	}
+		
 	public Sala mostrar() {
 		
 		try {
@@ -38,18 +101,17 @@ public class ConsultaSala {
 			String consulta = "SELECT * FROM salas";// usamos este query...
 			stm = usarConexion.createStatement();
 			rs = stm.executeQuery(consulta); // tenemos toda la inf de libros
+			 System.out.println("|id_sala|   FORMATO   |CAPACIDAD|");
 			while (rs.next()) { // leemos linea por linea
                 Sala sala =new Sala();
                 sala.setId_sala(rs.getInt(1));
-                sala.setNumero(rs.getInt(2));
-                sala.setFormato(rs.getString(3));
-                sala.setCapacidades(rs.getInt(4));
-                System.out.println("id_sala NRO DE SALA  FORMATO CAPACIDAD");
-System.out.printf("%d,%d,%s,%d\n",sala.getId_sala(),sala.getNumero(),sala.getFormato(),sala.getCapacidades());
+                sala.setFormato(rs.getString(2));
+                sala.setCapacidades(rs.getInt(3));
+     System.out.printf("%5d,%10s,%10d\n",sala.getId_sala(),sala.getFormato(),sala.getCapacidades());
 			}
 		} catch (Exception e) {
 
-		}
+		} 
 		return null;
 	}
 }

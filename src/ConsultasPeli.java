@@ -13,7 +13,7 @@ public class ConsultasPeli{
 	ResultSet rs = null;
 	PreparedStatement ps;
 
-	public ArrayList<pelicula> lista() {
+	/*public ArrayList<pelicula> lista() {
 		ArrayList<pelicula> listaPelis= new ArrayList<>();
 		try {
 			usarConexion = conn.conectar();
@@ -37,7 +37,7 @@ public class ConsultasPeli{
 
 		}
 		return listaPelis;
-	}
+	}*/
 	public pelicula mostrar() {
 	
 	try {

@@ -1,5 +1,6 @@
 
 public class CreaUser {
+	private int id_usuario;
 	private String email;
 	private String clave;
 	private String nombre;
@@ -9,6 +10,7 @@ public class CreaUser {
 	public CreaUser() {
 		
 	}
+
 	public CreaUser(String email, String clave, String nombre, String apellido, int tipoUsuario) {
 		super();
 		this.email = email;
@@ -47,6 +49,17 @@ public class CreaUser {
 	public void setTipoUsuario(int tipoUsuario) {
 		this.tipoUsuario = tipoUsuario;
 	}
+	public int getId_usuario() {
+		return id_usuario;
+	}
+	public void setId_usuario(int id_usuario) {
+		this.id_usuario = id_usuario;
+	}
+
+	/*public void mostrar() {
+		System.out.print(this.email + "+" + this.clave);
+		
+	}*/
 	
 	
 }

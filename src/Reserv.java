@@ -55,7 +55,7 @@ public class Reserv {
 		return Precio;
 	}
 	public void setPreci(float precio) {
-		Precio = precio;
+		this.Precio = precio;
 	}
 	
 	public Reserv(int id_reservas, int idbutaca, int id_sala, String fechaCompra,float precio, int fk_idUser, int fk_idFunc,
