@@ -10,11 +10,14 @@ public static void main(String[] args) throws SQLException {
 		boolean salidaMenu=false;
 		int opcion;
 		
+		
 	while(!salidaMenu) {
 		 System.out.println("        ------------Bienvenidos a CINEMAR------------------\n");
 		 System.out.println("Que desea hacer?");
-		 System.out.println("1_Registrarse \n2_Iniciar Sesion \n3_Ver Salas\n4_Salir");
-		try {
+		 System.out.println("1_Registrarse \n2_Iniciar Sesion \n3_Ver Salas\n4_Ver Funciones\n5_Salir");
+		
+		 
+		 try {
 				 opcion=op.nextInt();
 		switch (opcion) {
 	 case 1:
@@ -48,39 +51,94 @@ public static void main(String[] args) throws SQLException {
 		      Scanner entrada = new Scanner(System.in);
 		      String  mail=entrada.nextLine();
 		      System.out.println("Ingrese su contra: ");
-		      Scanner entrada2 = new Scanner(System.in);  //es necesario 2 scanner?
+		      Scanner entrada2 = new Scanner(System.in);  
 		      String contra=entrada2.nextLine();
 		      ConsultasUser IngresarAdmin = new ConsultasUser();
 			    if( IngresarAdmin.ingresar(mail, contra, 1) != null) {
 		    	  System.out.println("que desea hacer? \n");
-		    		 System.out.println("1_Ver reservas de todos los clientes \t2_ver reserva especifica \t3_Crear nueva sala \t4_Modificar una sala \t5_eliminar una sala \t6_modificar descuentos \n");
+		    		 System.out.println("1_Ver reservas de todos los clientes \t2_ver reserva especifica \t3_Crear nueva sala \t4_Crear nueva funcion \t5_Modificar una sala \t6_eliminar una sala \t7_modificar descuentos  \n");
 		    	  int opAdmin = op.nextInt();
 		    	  switch (opAdmin) { 
 		    	    case 1:
-		    	     
+		    	     //ver reservas de clientes
 		    	     break;
 		    	    case 2:
-		    	 
+		    	 //ver reserva de algun cliente
 		    	     break;
 		    	 
 		    	    case 3 :
-		    	    	   //crear sala
+		    	    	   //crear sala y funcion 
 		    	    	ConsultaSala Sala=new ConsultaSala();
 		    	    	Sala.CrearSala();
+		    	    	ConsultasPeli peli=new ConsultasPeli();
+		    	    	Scanner Ingrpel = new Scanner(System.in);
+				   	  System.out.println("INGRESE DURACION \n");
+		    	    	int duracion=Ingrpel.nextInt();
+				   	  System.out.println("Ingrese descripcion \n");
+		    	    	String Descripcion=Ingrpel.next();
+				   	  System.out.println("ingrese titulo \n");
+		    	    	String titulo=Ingrpel.next();
+			    	  System.out.println("ingrese si es estreno \n");
+		    	    	Boolean Estreno=Ingrpel.nextBoolean();
+				   	  System.out.println("ingrese idioma \n");
+		    	    	String Idioma=Ingrpel.next();
+				      System.out.println("ingrese precio\n");
+		    	    	float PrecioxPers=Ingrpel.nextFloat();
+		    	    	pelicula Peli = new pelicula(duracion,Descripcion,titulo,Estreno,Idioma,PrecioxPers);
+		    	    	peli.insertar(Peli);
+		    	    break;
+		    	    case 4:
+		    	    	//Crear Funcion
+		    	    ConsultasPeli  Cpeli = new ConsultasPeli();
+		    	    	Cpeli.mostrar();
+		    	    	System.out.println("Seleccione la pelicula para la funcion");
+		    	    	Scanner opC =new Scanner(System.in);
+		    	    	int id_pelicula=opC.nextInt();
+		    	    	
+		    	    	ConsultaFunc funcion =new ConsultaFunc();
+		    	    	ConsultaSala Sala4 = new ConsultaSala();
+		    	    	Sala4.mostrar();
+		    	    	System.out.println("Seleccione sala Disp para la funcion");
+		    	    	int sala=opC.nextInt();
+		    	    	
+		    	    
+		    	    	System.out.println("Seleccione fecha para la funcion YYYY-MM-DD");
+		    	    	String fecha=opC.next();
+		    	    	
+		    	    	funcion.crearUnaFuncion(id_pelicula,sala,fecha);
+		 
+		    	 
+		    	    	funcion.mostrar();
 		    	     break;
 		    	     
-		    	    case 4:
+		    	    case 5:
+		    	    	//modificar sala
 		    	    	ConsultaSala Sala2 = new ConsultaSala();
 		    	    	Sala2.mostrar();
 		    	    	Sala2.ModifSala();
 		    	    	Sala2.mostrar();
 		    	    break;
-		    	    case 5:
+		    	    case 6:
+		    	    	//eliminar una sala
 		    	    	ConsultaSala Sala3 = new ConsultaSala();
 		    	    	Sala3.EliminSala();
 		    	    	Sala3.mostrar();
 		    	    	break;
-		    	    case 6:
+		    	    case 7:
+		    	    	//modificar descuentos 
+		    	    /*Lunes y  Miércoles: 20%
+		    	    	Martes y  Jueves: 15%
+		    	    	Viernes, Sábados y Domingos: 10% */
+		    	    	Scanner opD = new Scanner(System.in);
+		    	    	String dia=opD.nextLine();
+		    	    	float porcentaje;
+		    	    	if (dia=="lunes"){
+		    	    		
+		    	    	}
+		    	   ConsultaDesc descuento = new ConsultaDesc();
+		           descuento.Creadescuento(dia,20,800);
+		
+                   
 		    	    	break;
 		    	    
 		    	    default:
@@ -99,7 +157,7 @@ public static void main(String[] args) throws SQLException {
 		      Scanner entrada2 = new Scanner(System.in);  //es necesario 2 scanner?
 		      String contra=entrada2.nextLine();
 		      ConsultasUser IngresarUsRe = new ConsultasUser();
-		     //IngresarUsRe.ingresar(mail, contra, 2);
+		    
 		      
 		     CreaUser cliente = new CreaUser();
 		     cliente =  IngresarUsRe.ingresar(mail, contra, 2);
@@ -109,16 +167,20 @@ public static void main(String[] args) throws SQLException {
 		    		 System.out.println("1_Crear una reserva \t2_Modificar una reserva \t3_Observar mis reservas \t4_ver el historico de mis entradas.\n");
 		    	  int opUser = op.nextInt();
 		    	  switch (opUser) { 
-		    	    case 1:
+		    	  
+		    	 //crear reserva
+		    	  case 1:
 		    	    	cliente.getId_usuario();
-			    	 System.out.println(cliente);
+			    	 System.out.println(cliente.getId_usuario());
 			    	  
-			    	    Reserv reserva= new Reserv(3,4,5,"2022-07-16",500,cliente.getId_usuario(),2,"13:47:00");
+			    	    Reserv reserva= new Reserv(5,"2022-07-16",500,cliente.getId_usuario(),2,"13:47:00",1);
 		    	     ConsultaReser NuevaReser = new ConsultaReser();
 		    	     NuevaReser.insertar(reserva);
+		    	    
+		   
 		    	     break;
 		    	    case 2:
-		    	    
+		    	    	
 		    	     break;
 		    	 
 		    	    case 3 :
@@ -132,11 +194,7 @@ public static void main(String[] args) throws SQLException {
 		    	    default:
 		    	    
 		    	  }
-		    	
-		    	
-		    	
-		    
-		      
+	
 		 }
 	 break;
 	 case 3:
@@ -144,8 +202,13 @@ public static void main(String[] args) throws SQLException {
 		ConsultaSala sala = new ConsultaSala();
 		sala.mostrar(); 
 		
+		
 		 break;
 	 case 4:
+		 System.out.println("*******Funciones Actuales******");
+		 ConsultaFunc funcion =new ConsultaFunc();
+	    	funcion.mostrar();
+	 case 5:
 		 System.out.println("Gracias por usar el sistema CINEMAR");
 		 salidaMenu=true;
 		 break;

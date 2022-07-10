@@ -58,17 +58,16 @@ public class Reserv {
 		this.Precio = precio;
 	}
 	
-	public Reserv(int id_reservas, int idbutaca, int id_sala, String fechaCompra,float precio, int fk_idUser, int fk_idFunc,
-			 String hora) {
+	public Reserv(int idsala, String fecha ,float precio, int fk_idUser,int fk_idFunc, String hora,
+			 int idbutaca) {
 		super();
-		this.id_reservas = id_reservas;
-		this.idbutaca = idbutaca;
-		this.id_sala = id_sala;
-		this.fechaCompra = fechaCompra;
+		this.id_sala = idsala;
+		this.fechaCompra = fecha;
+		this.Precio = precio;
 		this.fk_idUser = fk_idUser;
 		this.fk_idFunc = fk_idFunc;
-		this.Precio = precio;
 		this.hora = hora;
+		this.idbutaca=idbutaca;
 	}
 	public Reserv(int d) {
 		super();

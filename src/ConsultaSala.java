@@ -12,7 +12,7 @@ public class ConsultaSala {
 	ResultSet rs = null;
 	PreparedStatement ps;
 	
-	public ArrayList<Sala> lista() {
+	/*public ArrayList<Sala> lista() {
 		ArrayList<Sala> listaPelis= new ArrayList<>();
 		try {
 			usarConexion = conn.conectar();
@@ -31,7 +31,7 @@ public class ConsultaSala {
 
 		}
 		return listaPelis;
-	}
+	}*/
 	public void CrearSala() {
 		try {
 			Scanner ingreso = new Scanner(System.in);
@@ -41,17 +41,19 @@ public class ConsultaSala {
 			String formato=ingreso.next();
 			System.out.println("Ingrese capacidades");	
 			int capacidades=ingreso.nextInt();
-			
 			String consulta = "insert into salas (id_salas,formato,capacidades)values(?,?,?)";
 			usarConexion = conn.conectar();
 			ps = usarConexion.prepareStatement(consulta);
-			
 			ps.setObject(1,idsala);
 			ps.setObject(2,formato);
 			ps.setObject(3,capacidades);
 			ps.executeUpdate();
 			System.out.println("Sala agregada correctamente");
-		} catch (Exception e) {
+			ConsultaButaca GButacas = new ConsultaButaca();
+			Butaca butaca=new Butaca('A',1,false,idsala) ;
+			GButacas.inserta_butaca(butaca,capacidades);
+			
+			} catch (Exception e) {
 			System.out.println("Sala NO agregada");
 		}
 	}
@@ -93,7 +95,30 @@ public class ConsultaSala {
 			System.out.println(e.toString());
 		}
 	}
+	public void buscarSala() {
+		Scanner ingre = new Scanner(System.in);
+		ConsultaSala sala = new ConsultaSala();
+		sala.mostrar();
+		System.out.println("Seleccione la sala ");
+		int idsala=ingre.nextInt();
+		try {
+			usarConexion = conn.conectar();
+			stm=usarConexion.createStatement();
+			String consulta = "SELECT * FROM salas WHERE id_salas = '"+idsala+"'";
+			rs= stm.executeQuery(consulta);
+			while(rs.next()){
+			int SalaEnc = rs.getInt(1);
+			System.out.println(SalaEnc);
+			}
+			} catch (Exception e) {
+				System.out.println("error");
+			}
+		}
 		
+		
+
+	
+	
 	public Sala mostrar() {
 		
 		try {

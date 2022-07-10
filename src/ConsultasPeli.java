@@ -63,18 +63,18 @@ System.out.printf("%d,%d,%s,%s,%s,%s,$%.2f\n", Peli.getId_pelicula(),Peli.getDur
 	return null;
 
 }
+	
 public void insertar(pelicula peli) {
 	try {
-		String consulta = "insert into pelicula (id_pelicula,duracion,Descripcion,titulo,Estreno,Idioma,PrecioXpers)values(?,?,?,?,?,?,?)";
+		String consulta = "insert into pelicula (duracion,Descripcion,titulo,Estreno,Idioma,PrecioXpers)values(?,?,?,?,?,?)";
 		usarConexion = conn.conectar();
 		ps = usarConexion.prepareStatement(consulta);
-		ps.setObject(1, peli.getId_pelicula());
-		ps.setObject(2, peli.getDuracion());
-		ps.setObject(3, peli.getDescripcion());
-		ps.setObject(4, peli.getTitulo());
-		ps.setObject(5, peli.isEstreno());
-		ps.setObject(6, peli.getIdioma());
-		ps.setObject(7, peli.getPrecioXpers());
+		ps.setObject(1, peli.getDuracion());
+		ps.setObject(2, peli.getDescripcion());
+		ps.setObject(3, peli.getTitulo());
+		ps.setObject(4, peli.isEstreno());
+		ps.setObject(5, peli.getIdioma());
+		ps.setObject(6, peli.getPrecioXpers());
 		
 		ps.executeUpdate();
 	} catch (Exception e) {

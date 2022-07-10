@@ -7,9 +7,9 @@ import java.sql.Statement;
 public class ConexionBD {
 		Connection con; //variable especial para la conexion
 		private String DRIVER = "com.mysql.cj.jdbc.Driver";
-		private String BD_URL= "jdbc:mysql://localhost:3306/bdcine";
+		private String BD_URL= "jdbc:mysql://localhost:3306/bd_cine_final";
 		private String USER = "root";
-		private String PASS = "0912";
+		private String PASS = "5528";
 		Statement stmt;
 		
 		public Connection conectar() {

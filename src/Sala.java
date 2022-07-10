@@ -4,7 +4,8 @@ public class Sala {
 	private int numero;
     private String formato;
     private int capacidades;
-    
+ 
+
 	public Sala(int id_sala, int numero, String formato, int capacidades) {
 		super();
 		this.id_sala = id_sala;

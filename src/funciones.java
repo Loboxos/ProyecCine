@@ -1,10 +1,11 @@
 
 public class funciones {
 private int idfunciones;
-private String id_pelicula;
+private int id_pelicula;
 private int id_sala;
 private String Fsala;
 private String fecha;
+private String titulo;
 
 public String getFsala() {
 	return Fsala;
@@ -21,10 +22,10 @@ public int getIdfunciones() {
 public void setIdfunciones(int idfunciones) {
 	this.idfunciones = idfunciones;
 }
-public String getId_pelicula() {
+public int getId_pelicula() {
 	return id_pelicula;
 }
-public void setId_pelicula(String string) {
+public void setId_pelicula(int string) {
 	this.id_pelicula = string;
 }
 public int getId_sala() {
@@ -39,9 +40,15 @@ public String getFecha() {
 public void setFecha(String fecha) {
 	this.fecha = fecha;
 }
-public funciones(int idfunciones, String id_pelicula, int id_sala, String fecha) {
+public funciones(int idfunciones, int id_pelicula, int id_sala, String fecha) {
 	super();
 	this.idfunciones = idfunciones;
+	this.id_pelicula = id_pelicula;
+	this.id_sala = id_sala;
+	this.fecha = fecha;
+}
+public funciones(int id_pelicula, int id_sala, String fecha) {
+	super();
 	this.id_pelicula = id_pelicula;
 	this.id_sala = id_sala;
 	this.fecha = fecha;
@@ -49,5 +56,15 @@ public funciones(int idfunciones, String id_pelicula, int id_sala, String fecha)
 public funciones() {
 	super();
 }
+
+public String getTitulo() {
+	return titulo;
+}
+
+public void setTitulo(String titulo) {
+	this.titulo = titulo;
+}
+
+
 
 }

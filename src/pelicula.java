@@ -65,6 +65,15 @@ public pelicula(int id_pelicula,int duracion, String Descripcion,String titulo,b
 	this.Idioma = Idioma;
 	this.PrecioXpers = PrecioXpers;
 }
+public pelicula(int duracion, String Descripcion,String titulo,boolean Estreno, String Idioma,float PrecioXpers) {
+	super();
+	this.duracion = duracion;
+	this.Descripcion = Descripcion;
+	this.titulo = titulo;
+	this.Estreno = Estreno;
+	this.Idioma = Idioma;
+	this.PrecioXpers = PrecioXpers;
+}
 public void ActPelicula(int id_pelicula,int duracion, String Descripcion,String titulo,boolean Estreno, String Idioma,float PrecioXpers) {
 	
 }
