@@ -1,3 +1,4 @@
+![Captura de pantalla (72)](https://user-images.githubusercontent.com/100051726/178177373-affcdc4a-0734-4903-bde5-c5cc66919ed0.png)
 # Sistema de Gestión Cinemar
 
 ##Contexto
