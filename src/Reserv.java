@@ -2,13 +2,40 @@
 public class Reserv {
 	private int id_reservas;
 	private int idbutaca;
-	private int id_sala;
 	private String fechaCompra;
 	private int fk_idUser;
 	private int fk_idFunc;
-	private float Precio;
 	private String hora;
+	private int fk_iddesc;
+	private int fk_idTarjCred;
+	private float Precio;
+	private int DniUser;
+	private float preciofinal;
 	
+	public float getPreciofinal() {
+		return preciofinal;
+	}
+	public void setPreciofinal(float preciofinal) {
+		this.preciofinal = preciofinal;
+	}
+	public int getDniUser() {
+		return DniUser;
+	}
+	public void setDniUser(int dniUser) {
+		DniUser = dniUser;
+	}
+	public float getFk_iddesc() {
+		return fk_iddesc;
+	}
+	public void setFk_iddesc(int fk_iddesc) {
+		this.fk_iddesc = fk_iddesc;
+	}
+	public int getFk_idTarjCred() {
+		return fk_idTarjCred;
+	}
+	public void setFk_idTarjCred(int fk_idTarjCred) {
+		this.fk_idTarjCred = fk_idTarjCred;
+	}
 	public String getHora() {
 		return hora;
 	}
@@ -27,12 +54,7 @@ public class Reserv {
 	public void setIdbutaca(int idbutaca) {
 		this.idbutaca = idbutaca;
 	}
-	public int getId_sala() {
-		return id_sala;
-	}
-	public void setId_sala(int id_sala) {
-		this.id_sala = id_sala;
-	}
+
 	public String getFechaCompra() {
 		return fechaCompra;
 	}
@@ -54,24 +76,30 @@ public class Reserv {
 	public float getPrecio() {
 		return Precio;
 	}
-	public void setPreci(float precio) {
+	public void setPrecio(float precio) {
 		this.Precio = precio;
 	}
 	
-	public Reserv(int idsala, String fecha ,float precio, int fk_idUser,int fk_idFunc, String hora,
-			 int idbutaca) {
+	public Reserv(int fk_idFunc, String fecha ,float precio, int fk_idUser, String hora,
+			 int idbutaca,float precioFinal,int fk_tarjcredito) {
 		super();
-		this.id_sala = idsala;
+		this.fk_idFunc = fk_idFunc;
 		this.fechaCompra = fecha;
 		this.Precio = precio;
 		this.fk_idUser = fk_idUser;
-		this.fk_idFunc = fk_idFunc;
 		this.hora = hora;
 		this.idbutaca=idbutaca;
+		this.preciofinal=precioFinal;
+		this.fk_idTarjCred=fk_tarjcredito;
+		
 	}
 	public Reserv(int d) {
 		super();
 	 this.idbutaca=d; 
 	}
+	public Reserv() {
+		
+	}
+
 	
 }

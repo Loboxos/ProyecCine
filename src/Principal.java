@@ -12,12 +12,16 @@ public static void main(String[] args) throws SQLException {
 		
 		
 	while(!salidaMenu) {
-		 System.out.println("        ------------Bienvenidos a CINEMAR------------------\n");
-		 System.out.println("Que desea hacer?");
-		 System.out.println("1_Registrarse \n2_Iniciar Sesion \n3_Ver Salas\n4_Ver Funciones\n5_Salir");
+		
+		 System.out.println("\n\t------------Bienvenidos a CINEMAR------------------\n");
+		
+		 System.out.println("Que desea hacer?\n");
+		 System.out.println("1_Registrarse \n2_Iniciar Sesion \n3_Ver Salas\n4_Ver Funciones\n5_Salir\n");
 		
 		 
 		 try {
+			 System.out.print("Ingrese su opcion : ");
+			
 				 opcion=op.nextInt();
 		switch (opcion) {
 	 case 1:
@@ -40,20 +44,21 @@ public static void main(String[] args) throws SQLException {
 		 
 		 break;
 	 case 2:
-		 System.out.println("*******Inicio de sesion******");
+		 System.out.println("\n*******Inicio de sesion******\n");
 		 
 		 System.out.println("Seleccione su ingreso : \n");
 		 System.out.println("1_administrador \t2_Usuario Registrado\n");
 		 int opcion2=op.nextInt();
 		 if (opcion2==1) {
-			  System.out.println("ingreso como Admin");
-		      System.out.println("Ingrese su email: ");
+			  System.out.println("\n-------ingreso como Admin-----\n");
+		      System.out.print("Ingrese su email: ");
 		      Scanner entrada = new Scanner(System.in);
 		      String  mail=entrada.nextLine();
-		      System.out.println("Ingrese su contra: ");
+		      System.out.print("Ingrese su contra: ");
 		      Scanner entrada2 = new Scanner(System.in);  
 		      String contra=entrada2.nextLine();
 		      ConsultasUser IngresarAdmin = new ConsultasUser();
+		      
 			    if( IngresarAdmin.ingresar(mail, contra, 1) != null) {
 		    	  System.out.println("que desea hacer? \n");
 		    		 System.out.println("1_Ver reservas de todos los clientes \t2_ver reserva especifica \t3_Crear nueva sala \t4_Crear nueva funcion \t5_Modificar una sala \t6_eliminar una sala \t7_modificar descuentos  \n");
@@ -61,9 +66,18 @@ public static void main(String[] args) throws SQLException {
 		    	  switch (opAdmin) { 
 		    	    case 1:
 		    	     //ver reservas de clientes
+		    	    	ConsultaReser reserva =new ConsultaReser();
+		    	    	reserva.mostrar();
 		    	     break;
 		    	    case 2:
-		    	 //ver reserva de algun cliente
+		    	    	 //ver reserva de algun cliente
+		    	    	System.out.print("ingresar dni de usuario a buscar: ");
+		    	    	Scanner ingreso = new Scanner(System.in);
+		    	    	int buscar=ingreso.nextInt();
+		    	    	
+		    	    	ConsultaReser reserva2= new ConsultaReser();
+		    	    	reserva2.mostrar(buscar);
+		    	 
 		    	     break;
 		    	 
 		    	    case 3 :
@@ -105,8 +119,16 @@ public static void main(String[] args) throws SQLException {
 		    	    	System.out.println("Seleccione fecha para la funcion YYYY-MM-DD");
 		    	    	String fecha=opC.next();
 		    	    	
-		    	    	funcion.crearUnaFuncion(id_pelicula,sala,fecha);
-		 
+		    	    	System.out.println("Seleccione la hora para la funcion HH:MM");
+		    	    	String hora=opC.next();
+		    	    	
+		    	    	System.out.println("Seleccione El precio de la funcion");
+		    	    	int precio=opC.nextInt();
+		    	    	
+		    	    	funcion.crearUnaFuncion(id_pelicula, sala, fecha, hora ,precio);
+		    	    
+		    	   
+		    	    	
 		    	 
 		    	    	funcion.mostrar();
 		    	     break;
@@ -125,18 +147,10 @@ public static void main(String[] args) throws SQLException {
 		    	    	Sala3.mostrar();
 		    	    	break;
 		    	    case 7:
-		    	    	//modificar descuentos 
-		    	    /*Lunes y  Miércoles: 20%
-		    	    	Martes y  Jueves: 15%
-		    	    	Viernes, Sábados y Domingos: 10% */
-		    	    	Scanner opD = new Scanner(System.in);
-		    	    	String dia=opD.nextLine();
-		    	    	float porcentaje;
-		    	    	if (dia=="lunes"){
-		    	    		
-		    	    	}
-		    	   ConsultaDesc descuento = new ConsultaDesc();
-		           descuento.Creadescuento(dia,20,800);
+		    	    //modificar descuentos 
+		    	    System.out.println("Lunes  y  Miércoles: 20%  \n Martes y  Jueves: 15% \n Viernes, Sábados y Domingos: 10%" );
+		    	    	
+		           
 		
                    
 		    	    	break;
@@ -149,11 +163,11 @@ public static void main(String[] args) throws SQLException {
 		      }
 		      
 		 }else if(opcion2 == 2){
-			  System.out.println("ingreso como usuario Registrado");
-		      System.out.println("Ingrese su email: ");
+			  System.out.println("\nIngreso como usuario Registrado");
+		      System.out.print("\nIngrese su email: ");
 		      Scanner entrada = new Scanner(System.in);
 		      String  mail=entrada.nextLine();
-		      System.out.println("Ingrese su contra: ");
+		      System.out.print("Ingrese su contra: ");
 		      Scanner entrada2 = new Scanner(System.in);  //es necesario 2 scanner?
 		      String contra=entrada2.nextLine();
 		      ConsultasUser IngresarUsRe = new ConsultasUser();
@@ -170,25 +184,110 @@ public static void main(String[] args) throws SQLException {
 		    	  
 		    	 //crear reserva
 		    	  case 1:
-		    	    	cliente.getId_usuario();
-			    	 System.out.println(cliente.getId_usuario());
-			    	  
-			    	    Reserv reserva= new Reserv(5,"2022-07-16",500,cliente.getId_usuario(),2,"13:47:00",1);
+		    	    	int Cliente= cliente.getId_usuario();
+			    	
+			  System.out.println("--------------------CARTELERA CINEMAR--------------------------------");
+			    	 ConsultaFunc funciones=new ConsultaFunc();
+			    	 funciones.mostrar();
+			  System.out.println("---------------------------------------------------------------------\n");
+			  System.out.println("---------------------------------------------------------------------");  
+			  ConsultaSala Salas = new ConsultaSala();
+                      Salas.mostrar();
+                      //stop para pruebas
+			    	/*Scanner stop = new Scanner(System.in);
+			    	System.out.println("STOOOP");
+			    	int a=stop.nextInt();
+			    	*/
+			    	System.out.println("seleccione funcion");
+			    	Scanner Seleccion = new Scanner(System.in);
+			    	int Selec=Seleccion.nextInt();
+			    	ConsultaFunc FechaF= new ConsultaFunc();
+			    	String FechaReser=FechaF.ConsultaFecha(Selec);
+			    	String FechaHora=FechaF.ConsultaHora(Selec);
+			    	
+			    	ConsultaButaca butaca = new ConsultaButaca();
+			    	butaca.mostrar();
+			    	
+			    	ConsultaFunc precioF = new ConsultaFunc();
+                    int precio=precioF.ConsultarPrecio(Selec);	
+			    	Boolean salida=false;
+			    	
+			    	Scanner eleccion = new Scanner(System.in);
+			    int numeroBut=1;
+			    	
+			    	while(!salida) {
+			    		System.out.println("seleccione BUTACA NRO");
+			    	numeroBut = eleccion.nextInt();
+			    	ConsultaButaca validaButac = new ConsultaButaca();
+			    	if(validaButac.comprobarDisp(numeroBut)==0) {
+			    	System.out.println("butaca elegida correctamente");
+			    	salida=true;
+			    	}else {
+			    		System.out.println("butaca incorrecta vuelva a elegir");
+			    	 salida=false;
+			    	}
+			    	//SELECCIONA BUTACA DISPONIBLE 
+			    	}
+			    	ConsulTarjCredito Pago = new ConsulTarjCredito();
+			    	System.out.println("PROCEDIENDO AL PAGO ");
+			    	System.out.println("INSERTE Numero de TARJETA");
+			        Scanner Atributos = new Scanner(System.in);
+			        String numero = Atributos.nextLine();
+			        System.out.println("INSERTE SU BALANCE");
+			        double balance =Atributos.nextDouble();
+			        System.out.println("INSERTE limite de tarjeta");
+			        double limite = Atributos.nextDouble();
+			        System.out.println("INSERTE NOMBRE del banco");
+			        String banco = Atributos.nextLine();
+			        
+			    	Pago.inserta_TarjetaCredito(numero,balance, limite, banco);
+			    	int idTARJ= Pago.consultar(numero);
+			        if (precio < limite && balance>0) {
+			        	System.out.println("pago realizado xd");
+			        }
+			    	
+		// sí acudieron al menos 6 veces en 3 meses, en caso contrario el precio de la entrada no tendrá descuento alguno.
+
+			    	  //1,2,2021-03-02-,500,1,13:00,127,3,1
+			   // TARJETA DE CREDITO DE UN USUARIO Y DESCUENTO :(
+			        System.out.println("Ingrese el dia de hoy");
+			        Scanner dia = new Scanner(System.in);
+			    	Scanner opD = new Scanner(System.in);
+	    	    	String dia1=opD.nextLine();
+	    	    	float porcentaje = 0;
+	    	    	if (dia1=="lunes" || dia1=="miercoles"){
+	    	    		porcentaje=20;
+	    	    	}else if(dia1=="martes" || dia1 =="jueves"){
+	    	    		porcentaje=15;
+	    	    	}else if(dia1 == "viernes"|| dia1=="sabado" || dia1 =="domingo") {
+	    	    		porcentaje=10;	
+	    	    	}else { 
+	                System.out.println("ingreso incorrecto");
+	    	    	}
+	    	    	float precioFinal = (precio*porcentaje/100);
+	    	   ConsultaDesc descuento = new ConsultaDesc();
+	           descuento.Creadescuento(dia1,porcentaje,precioFinal);
+	
+
+			        
+			       Reserv reserva= new Reserv(Selec,FechaReser,precio,Cliente,FechaHora,numeroBut,precioFinal,idTARJ);
 		    	     ConsultaReser NuevaReser = new ConsultaReser();
 		    	     NuevaReser.insertar(reserva);
-		    	    
+		    	  
 		   
 		    	     break;
 		    	    case 2:
-		    	    	
+		    	    	//modific reserva
 		    	     break;
 		    	 
 		    	    case 3 :
-		    	     
+		    	    	//observar reservas
+		    	     ConsultaReser  reserv = new ConsultaReser();
+		    	     reserv.mostrar();
 		    	     break;
 		    	     
 		    	    case 4:
-		    	    	
+		    	    	//ver historico de reservas
 		    	    break;
 		    	    
 		    	    default:
@@ -199,7 +298,9 @@ public static void main(String[] args) throws SQLException {
 	 break;
 	 case 3:
 		 System.out.println("*******Cartelera******");
-		ConsultaSala sala = new ConsultaSala();
+		
+		 ConsultaSala sala = new ConsultaSala();
+	
 		sala.mostrar(); 
 		
 		
@@ -215,7 +316,7 @@ public static void main(String[] args) throws SQLException {
 		 default:
 		    System.out.println("*******OPCION INCORRECTA INTENTE DE NUEVO******");
 			System.out.println("Que desea hacer?");
-			System.out.println("1_Registrarse \n2_Iniciar Sesion\n3_Ver Salas");
+			System.out.println("1_Registrarse \n2_Iniciar Sesion \n3_Ver Salas\n4_Ver Funciones\n5_Salir");
 			opcion=op.nextInt();
 	 }
 	}catch(InputMismatchException e) {

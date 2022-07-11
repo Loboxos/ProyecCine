@@ -1,15 +1,5 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
-
 public class Butaca {
-	ConexionBD conn = new ConexionBD();
-	Connection usarConexion = null;
-	Statement stm = null;
-	ResultSet rs = null;
-	PreparedStatement ps;
+
  private int id_butacas;
  private char fila;
  private int numero;
@@ -17,8 +7,15 @@ public class Butaca {
  private int id_sala;
  //private id_Sala;
  
+
 public char getFila() {
 	return fila;
+}
+public int getId_butacas() {
+	return id_butacas;
+}
+public void setId_butacas(int id_butacas) {
+	this.id_butacas = id_butacas;
 }
 public int getId_sala() {
 	return id_sala;
@@ -47,7 +44,9 @@ public Butaca(char fila, int numero, boolean reservada) {
 	this.numero = numero;
 	this.reservada = reservada;
 }
-
+public Butaca() {
+	
+}
 public Butaca(char fila ,int numero,boolean op, int idsala) {
 	this.fila = fila;
 	this.numero = numero;

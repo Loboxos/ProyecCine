@@ -12,7 +12,7 @@ public class ConsultaDesc {
 	PreparedStatement ps;
 	
 	
-	public void Creadescuento(String dia, float porcentaje, int precioFinal){
+	public void Creadescuento(String dia, float porcentaje, float precioFinal){
 		try {
 			usarConexion=conn.conectar();
 			stm = usarConexion.createStatement();

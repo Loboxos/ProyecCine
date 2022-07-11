@@ -1,14 +1,14 @@
 
 public class User{
-	private String Dni;
+	private int Dni;
 	private String nombreU;
 	private String aplelidoU;
 	private String Telefono;
 	private String correo;
-	public String getDni() {
+	public int getDni() {
 		return Dni;
 	}
-	public void setDni(String dni) {
+	public void setDni(int dni) {
 		Dni = dni;
 	}
 	public String getNombreU() {

@@ -5,7 +5,25 @@ private int id_pelicula;
 private int id_sala;
 private String Fsala;
 private String fecha;
+private String hora;
 private String titulo;
+private int precio;
+
+public int getPrecio() {
+	return precio;
+}
+
+public void setPrecio(int precio) {
+	this.precio = precio;
+}
+
+public String getHora() {
+	return hora;
+}
+
+public void setHora(String hora) {
+	this.hora = hora;
+}
 
 public String getFsala() {
 	return Fsala;
@@ -40,19 +58,20 @@ public String getFecha() {
 public void setFecha(String fecha) {
 	this.fecha = fecha;
 }
-public funciones(int idfunciones, int id_pelicula, int id_sala, String fecha) {
+
+public funciones(int idfunciones, int id_pelicula, int id_sala, String fsala, String fecha, String hora, String titulo,
+		int precio) {
 	super();
 	this.idfunciones = idfunciones;
 	this.id_pelicula = id_pelicula;
 	this.id_sala = id_sala;
+	this.Fsala = fsala;
 	this.fecha = fecha;
+	this.hora = hora;
+	this.titulo = titulo;
+	this.precio = precio;
 }
-public funciones(int id_pelicula, int id_sala, String fecha) {
-	super();
-	this.id_pelicula = id_pelicula;
-	this.id_sala = id_sala;
-	this.fecha = fecha;
-}
+
 public funciones() {
 	super();
 }
